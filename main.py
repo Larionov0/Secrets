@@ -151,6 +151,47 @@ while True:
             continue
 
         # Menu with secrets
+        while True:
+            system('cls')
+            print("-" * 10 + "===" + login + "===" + "-" * 10)
+            print("\nYour secrets:")
+            i = 1
+            for secret_name in data[login]["secrets"]:
+                print(f"{i}. {secret_name}")
+                i += 1
+            print("-" * 30)
+            ans = input("1 - new secret\n2 - edit secret\n3 - delete secret\n4 - delete account\n5 - leave account\n:")
+            if ans == "1":
+                # Input name of secret
+                word = "name"
+                correct_input = False
+                while True:
+                    system("cls")
+                    secret_name = input(f"{' ' * 10}{'-' * 20}\n{' ' * (9 - len(word))}Name |")
+                    if secret_name == "stop":
+                        break
+                    if secret_name == "":
+                        print("Try again!")
+                        input()
+                    else:
+                        correct_input = True
+                if not correct_input:
+                    continue
+
+                text = input("Text:\n")
+                data[login]["secrets"][secret_name] = text
+                input("Secret added!\n")
+
+            elif ans == "2":
+                pass
+            elif ans == "3":
+                pass
+            elif ans == "4":
+                pass
+            elif ans == "5":
+                pass
+            else:
+                pass
 
     elif ans == "3":
         exit(0)
