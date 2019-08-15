@@ -1,15 +1,20 @@
 from os import system
+from json import dumps, loads
 
-data = {
-    "login": {
-        "password": "PSWRD",
-        "question": 2,
-        "answer": "lol",
-        "secrets": {
-            "secret1": "text1"
-        }
-    },
-}
+try:
+    with open("data.txt") as file:
+        data = loads(file.read())
+except:
+    data = {
+        "login": {
+            "password": "PSWRD",
+            "question": 2,
+            "answer": "lol",
+            "secrets": {
+                "secret1": "text1"
+            }
+        },
+    }
 
 questions_list = [
     "What was color of your first car in past life?",
@@ -150,6 +155,7 @@ while True:
         if not correct_input:
             continue
 
+        input("Successful sign in\n")
         # Menu with secrets
         while True:
             system('cls')
@@ -175,6 +181,7 @@ while True:
                         input()
                     else:
                         correct_input = True
+                        break
                 if not correct_input:
                     continue
 
@@ -189,11 +196,14 @@ while True:
             elif ans == "4":
                 pass
             elif ans == "5":
-                pass
+                break
             else:
                 pass
 
     elif ans == "3":
+        json_text = dumps(data, indent=4)
+        with open("data.txt", "wt") as file:
+            file.write(json_text)
         exit(0)
     else:
         pass
