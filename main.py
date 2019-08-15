@@ -1,3 +1,5 @@
+from os import system
+
 data = {
     "login": {
         "password": "PSWRD",
@@ -17,18 +19,21 @@ questions_list = [
 
 
 while True:
-    ans = input("1 - sign up\n2 - sign in\n3 - exit\n")
+    system("cls")
+    ans = input("---=mAIN MENu=---\n1 - sign up\n2 - sign in\n3 - exit\n")
     if ans == "1":
         """Sign up"""
         # Input login
         word = "login"
         correct_input = False
         while True:
+            system("cls")
             login = input(f"{' ' * 10}{'-'*20}\n{' ' * (9 - len(word))}Login |")
             if login == "stop":
                 break
             if login in data:
                 print("Try again!")
+                input()
             else:
                 correct_input = True
                 break
@@ -39,11 +44,14 @@ while True:
         word = "password"
         correct_input = False
         while True:
+            system("cls")
+            print(f"{' ' * 10}{'-' * 20}\n{' ' * (9 - len('login'))}Login |{login}")
             password = input(f"{' ' * 10}{'-' * 20}\n{' ' * (9 - len(word))}Password |")
             if password == "stop":
                 break
             if len(password) < 6:
                 print("Try again!")
+                input()
             else:
                 correct_input = True
                 break
@@ -54,6 +62,7 @@ while True:
         word = "question"
         correct_input = False
         while True:
+            system("cls")
             print("Choose the number of question (stop):")
             i = 1
             for question in questions_list:
@@ -64,11 +73,12 @@ while True:
             if num_of_question == "stop":
                 break
 
-            if not num_of_question.isdigit() or int(num_of_question) >= len(questions_list):
+            if not num_of_question.isdigit() or int(num_of_question) - 1 >= len(questions_list):
                 print("Icorrect number. Try again")
+                input()
                 continue
 
-            num_of_question = int(num_of_question)
+            num_of_question = int(num_of_question) - 1
             correct_input = True
             break
         if not correct_input:
@@ -78,20 +88,29 @@ while True:
         word = "answer"
         correct_input = False
         while True:
+            system("cls")
+            print(questions_list[num_of_question])
             answer = input(f"{' ' * 10}{'-' * 20}\n{' ' * (9 - len(word))}Answer |")
             if answer == "stop":
                 break
             if answer == "":
                 print("Try again")
+                input()
             else:
                 correct_input = True
                 break
         if not correct_input:
             continue
 
-        print(login, password, num_of_question, answer)
-
-
+        data[login] = {
+        "password": password,
+        "question": num_of_question,
+        "answer": answer,
+        "secrets": {}
+        }
+        system('cls')
+        print("Successful sign up!")
+        input()
 
 
     elif ans == "2":
