@@ -74,6 +74,25 @@ while True:
         if not correct_input:
             continue
 
+        # Input answer
+        word = "answer"
+        correct_input = False
+        while True:
+            answer = input(f"{' ' * 10}{'-' * 20}\n{' ' * (9 - len(word))}Answer |")
+            if answer == "stop":
+                break
+            if answer == "":
+                print("Try again")
+            else:
+                correct_input = True
+                break
+        if not correct_input:
+            continue
+
+        print(login, password, num_of_question, answer)
+
+
+
 
     elif ans == "2":
         pass
