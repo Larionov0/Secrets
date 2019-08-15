@@ -112,9 +112,46 @@ while True:
         print("Successful sign up!")
         input()
 
-
     elif ans == "2":
-        pass
+        """Sign in"""
+        # Input login
+        word = "login"
+        correct_input = False
+        while True:
+            system("cls")
+            login = input(f"{' ' * 10}{'-' * 20}\n{' ' * (9 - len(word))}Login |")
+            if login == "stop":
+                break
+            if login not in data:
+                print("Try again!")
+                input()
+            else:
+                correct_input = True
+                break
+        if not correct_input:
+            continue
+
+        # Input password
+        word = "password"
+        correct_input = False
+        while True:
+            system("cls")
+            print(f"{' ' * 10}{'-' * 20}\n{' ' * (9 - len('login'))}Login |{login}")
+            password = input(f"{' ' * 10}{'-' * 20}\n{' ' * (9 - len(word))}Password |")
+            if password == "stop":
+                break
+            if password == data[login]["password"]:
+                correct_input = True
+                break
+            else:
+                print("Try again! (Do you forget password?)")
+                # Here must be code for password recovery
+                input()
+        if not correct_input:
+            continue
+
+        # Menu with secrets
+
     elif ans == "3":
         exit(0)
     else:
