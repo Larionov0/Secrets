@@ -202,6 +202,14 @@ while True:
 
     elif ans == "3":
         json_text = dumps(data, indent=4)
+        with open("data.csv", "wt") as csv:
+            csv.write("login;password;question number;answer;secrets")
+            for login in data:
+                user = login
+                for par in data[login]:
+                    user += ";" + str(data[login][par])
+                csv.write("\n" + user)
+
         with open("data.txt", "wt") as file:
             file.write(json_text)
         exit(0)
